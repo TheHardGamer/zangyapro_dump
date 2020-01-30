@@ -1,0 +1,11 @@
+service vendor.camera-provider-2-4 /vendor/bin/hw/android.hardware.camera.provider@2.4-service
+    class hal
+    disabled
+    user cameraserver
+    group audio camera input drmrpc
+    ioprio rt 4
+    capabilities SYS_NICE
+    writepid /dev/cpuset/camera-daemon/tasks /dev/stune/foreground/tasks
+
+on property:vold.decrypt=trigger_restart_framework
+    start vendor.camera-provider-2-4

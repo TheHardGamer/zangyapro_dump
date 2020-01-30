@@ -1,0 +1,13 @@
+service ptt_socket_app /system/bin/ptt_socket_app -d
+    class main
+    user root
+    group root
+    oneshot
+    disabled
+
+service set_sn /system/bin/adjust_serialno setsn
+    disable
+    oneshot
+
+on property:sys.sn_set=1
+    start set_sn
